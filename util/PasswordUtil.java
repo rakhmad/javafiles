@@ -1,4 +1,4 @@
-package com.pusilkom.artajasa.billing.util;
+package util;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
@@ -18,14 +18,24 @@ public class PasswordUtil {
     public PasswordUtil() {
         logger = LoggerFactory.getLogger(PasswordUtil.class);
     }
+
+    /*
+     * Generate Salt for password generator
+     */
     public String generateSalt(int length) {
         return RandomStringUtils.randomAlphanumeric(length);
     }
 
+    /*
+     * Generate Hash from password and salt value
+     */
     public String generateHash(String password, String salt) {
         return Sha512DigestUtils.shaHex(password+salt);
     }
 
+    /*
+     * Generate random password for reset password function
+     */
     public String generateRandomPassword() {
         return RandomStringUtils.randomAlphanumeric(LENGTH_OF_PASSWORD);
     }
